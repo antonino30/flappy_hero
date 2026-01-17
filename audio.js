@@ -5,7 +5,7 @@ const AudioEngine = (() => {
   let isMuted = false;
 
   let beatTimer = null;
-  let bpm = 90;
+  let bpm = 90;         // parte lenta
   let targetBpm = 90;
 
   function ensure() {
@@ -21,7 +21,7 @@ const AudioEngine = (() => {
     if (master) master.gain.value = isMuted ? 0 : 0.18;
   }
 
-  function click(freq = 660, dur = 0.06) {
+  function click(freq=660, dur=0.06) {
     if (isMuted) return;
     ensure();
     const o = ctx.createOscillator();
@@ -47,16 +47,16 @@ const AudioEngine = (() => {
     targetBpm = 90;
 
     const tick = () => {
-      // kick + hat
+      // “cassa” + “charleston”
       click(140, 0.05);
       setTimeout(() => click(860, 0.03), 70);
 
       const interval = (60_000 / bpm);
       beatTimer = setTimeout(tick, interval);
 
+      // inseguo il target con un po' di inerzia
       bpm += (targetBpm - bpm) * 0.08;
     };
-
     tick();
   }
 
@@ -66,16 +66,9 @@ const AudioEngine = (() => {
   }
 
   function setIntensity(x01) {
-    targetBpm = 90 + x01 * 80; // 90..170
+    // x01 0..1 -> BPM 90..170
+    targetBpm = 90 + x01 * 80;
   }
 
-  return {
-    setMuted,
-    startBeat,
-    stopBeat,
-    setIntensity,
-    sfxJump: () => click(740, 0.05),
-    sfxHit: () => click(220, 0.12),
-    sfxPower: () => click(520, 0.08),
-  };
+  return { setMuted, startBeat, stopBeat, setIntensity, sfxJump: () => click(740, 0.05), sfxHit: () => click(220, 0.12) };
 })();
