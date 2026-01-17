@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Flappy Hero (Draghetto)</title>
+  <title>Flappy Hero</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>Flappy Hero (Draghetto)</h1>
+      <h1>Flappy Hero</h1>
       <div class="hud">
         <div>Punteggio: <span id="score">0</span></div>
         <div>Best: <span id="best">0</span></div>
@@ -22,15 +22,18 @@
       <button id="btnStart">Start</button>
       <button id="btnMute">Audio: ON</button>
       <button id="btnReset">Reset Best</button>
-      <div class="hint">
-        Tocca (o Spazio) per saltare. T usa abilità. E cambia abilità. R restart.
-      </div>
+      <div class="hint">Tocca (o premi Spazio) per saltare. R per restart.</div>
     </div>
 
     <div id="overlay" class="overlay hidden">
       <div class="panel">
-        <h2 id="ovTitle">Flappy Hero</h2>
-        <p id="ovText">Premi Start o tocca lo schermo per iniziare.</p>
+        <h2 id="ovTitle">Game Over</h2>
+        <p id="ovText">Premi Start o R per riprovare.</p>
       </div>
     </div>
   </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
