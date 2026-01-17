@@ -10,6 +10,9 @@ const btnReset = document.getElementById("btnReset");
 const overlay = document.getElementById("overlay");
 const ovTitle = document.getElementById("ovTitle");
 const ovText = document.getElementById("ovText");
+overlay.addEventListener("pointerdown", () => {
+  if (state === "menu" || state === "gameover") start();
+});
 
 const W = canvas.width;
 const H = canvas.height;
